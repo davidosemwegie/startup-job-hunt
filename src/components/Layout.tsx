@@ -12,7 +12,7 @@ const Hero = styled.div`
   height: 450px;
   position: absolute;
   z-index: -1;
-  margin: 0;
+  margin: 0 auto;
 `
 
 const Header = styled.div`
@@ -32,11 +32,12 @@ const HeaderTitle = styled.p`
 const Layout: React.FC<Props> = ({ children }) => {
   return (
     <Container>
-      <Hero />
-      <Header>
-        <HeaderTitle>StartUpJobHunt.com</HeaderTitle>
-      </Header>
-      {children}
+      <Hero>
+        <Header>
+          <HeaderTitle>StartUpJobHunt.com</HeaderTitle>
+        </Header>
+        {children}
+      </Hero>
     </Container>
   )
 }
