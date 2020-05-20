@@ -15,10 +15,27 @@ const Hero = styled.div`
   margin: 0;
 `
 
+const Header = styled.div`
+  /* background-color: pink; */
+  height: 80px;
+  width: 70%;
+  margin: 0 auto;
+  display: grid;
+  align-content: center;
+`
+
+const HeaderTitle = styled.p`
+  margin: 0;
+  font-weight: 700;
+`
+
 const Layout: React.FC<Props> = ({ children }) => {
   return (
     <Container>
       <Hero />
+      <Header>
+        <HeaderTitle>StartUpJobHunt.com</HeaderTitle>
+      </Header>
       {children}
     </Container>
   )
