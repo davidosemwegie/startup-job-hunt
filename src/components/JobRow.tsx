@@ -21,8 +21,8 @@ const Left = styled.div`
 
 const Right = styled.div`
   display: flexbox;
-  flex-direction: flex-end;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-end;
   align-items: center;
   padding: 0;
 
@@ -107,7 +107,7 @@ const TagGroup = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0;
-  @media (max-width: 640px) {
+  @media (max-width: 1250px) {
     display: none;
   }
 `
