@@ -111,6 +111,9 @@ export default function JobList() {
               tag3={
                 typeof job.tags[2] !== "undefined" ? job.tags[2].name : "Tag"
               }
+              city={
+                typeof job.cities[0] !== "undefined" ? job.cities[0].name : "NA"
+              }
             />
           )
         })
