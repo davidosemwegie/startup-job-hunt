@@ -13,6 +13,10 @@ const Container = styled.div`
   display: grid;
   justify-content: center;
   align-content: center;
+
+  @media (max-width: 640px) {
+    height: 380px;
+  }
 `
 const HeroMessage = styled.p`
   margin: 0;

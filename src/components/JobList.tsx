@@ -69,8 +69,7 @@ const JOBS_QUERY = gql`
 `
 
 const Container = styled.div`
-  /* background-color: red;
-  height: 400px; */
+  margin: 20px auto;
 `
 
 export default function JobList() {

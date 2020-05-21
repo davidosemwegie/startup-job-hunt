@@ -4,13 +4,15 @@ import data from "../data"
 import Tag from "./Tag"
 import ReactCountryFlag from "react-country-flag"
 
-console.log(data[0])
-
 const Container = styled.div`
   width: 80%;
   margin: 20px auto;
   display: grid;
   grid-template-columns: repeat(3, auto);
+
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(1, auto);
+  }
 `
 const Left = styled.div`
   display: flexbox;
@@ -23,6 +25,10 @@ const Right = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
 `
 
 const CompanyLogoImage = styled.img`
@@ -30,6 +36,13 @@ const CompanyLogoImage = styled.img`
   width: 100px;
   border-radius: 20px;
   margin-right: 20px;
+
+  @media (max-width: 640px) {
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
 `
 
 const NoCompanyLogo = styled.div`
@@ -41,11 +54,22 @@ const NoCompanyLogo = styled.div`
   justify-content: center;
   align-content: center;
   margin-right: 20px;
+
+  @media (max-width: 640px) {
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
 `
 const CompanyNameLetter = styled.p`
   color: #919191;
   font-size: 30px;
   font-weight: 700;
+
+  @media (max-width: 640px) {
+    font-size: 20px;
+  }
 `
 const TitleGroup = styled.div`
   display: flexbox;
@@ -60,10 +84,19 @@ const JobTitle = styled.p`
   font-size: 25px;
   font-weight: 700;
   margin: 0;
+
+  @media (max-width: 640px) {
+    font-size: 14px;
+    max-width: 200px;
+  }
 `
 
 const CompanyName = styled.p`
   margin: 0;
+
+  @media (max-width: 640px) {
+    font-size: 10px;
+  }
 `
 
 const CityName = styled.p``
@@ -74,6 +107,9 @@ const TagGroup = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0;
+  @media (max-width: 640px) {
+    display: none;
+  }
 `
 
 interface Props {

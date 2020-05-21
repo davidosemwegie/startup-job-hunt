@@ -5,7 +5,7 @@ interface Props {
   children: any
 }
 
-const Container = styled.div``
+// const Container = styled.div``
 const Hero = styled.div`
   background: linear-gradient(104deg, #02aab0 0%, #00cdac 100%);
   width: 100%;
@@ -13,6 +13,10 @@ const Hero = styled.div`
   position: absolute;
   z-index: -1;
   margin: 0 auto;
+
+  @media (max-width: 640px) {
+    font-size: 30px;
+  }
 `
 
 const Header = styled.div`
@@ -31,14 +35,12 @@ const HeaderTitle = styled.p`
 
 const Layout: React.FC<Props> = ({ children }) => {
   return (
-    <Container>
-      <Hero>
-        <Header>
-          <HeaderTitle>StartUpJobHunt.com</HeaderTitle>
-        </Header>
-        {children}
-      </Hero>
-    </Container>
+    <Hero>
+      <Header>
+        <HeaderTitle>StartUpJobHunt.com</HeaderTitle>
+      </Header>
+      {children}
+    </Hero>
   )
 }
 
