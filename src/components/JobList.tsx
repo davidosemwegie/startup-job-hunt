@@ -84,10 +84,6 @@ const Container = styled.div`
 export default function JobList() {
   const { loading, data } = useQuery<JobsData>(JOBS_QUERY)
 
-  // if (data) {
-  //   console.log(data.jobs[0].cities[0].country.isoCode)
-  // }
-
   return (
     <Container>
       {loading ? (
@@ -111,22 +107,32 @@ export default function JobList() {
               ? job.tags[1].name
               : "Tears this still doesnt work"
 
-          // const title = job.title
-          // const companyName = job.company.name
-          // const tags = job.tags
-          // const isoCode = job.cities[0].id
-
           return (
-            <div>
-              <p>{isoCode}</p>
-              <p>{cityname}</p>
-              <p>{tagName}</p>
-            </div>
+            <JobRow
+              title={typeof job.title !== "undefined" ? job.title : "Job Title"}
+              companyName={
+                typeof job.company.name !== "undefined"
+                  ? job.company.name
+                  : "Company Name"
+              }
+              isoCode={
+                typeof job.cities[0] !== "undefined"
+                  ? job.cities[0].country.isoCode
+                  : "NA"
+              }
+              tag1={
+                typeof job.tags[0] !== "undefined" ? job.tags[0].name : "Tag"
+              }
+              tag2={
+                typeof job.tags[1] !== "undefined" ? job.tags[1].name : "Tag"
+              }
+              tag3={
+                typeof job.tags[2] !== "undefined" ? job.tags[2].name : "Tag"
+              }
+            />
           )
         })
       )}
-
-      {/* <JobRow /> */}
     </Container>
   )
 }

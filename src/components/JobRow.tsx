@@ -1,6 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import data from "../data"
+import Tag from "./Tag"
+import ReactCountryFlag from "react-country-flag"
 
 console.log(data[0])
 
@@ -21,20 +23,37 @@ const JobTitle = styled.p``
 
 const CompanyName = styled.p``
 
+const TagGroup = styled.div``
+
 interface Props {
   title: string
-  tags: [Object]
+  tag1: string
+  tag2: string
+  tag3: string
   isoCode: string
   companyName: string
 }
 
-const JobRow: React.FC<Props> = ({ title, companyName, isoCode }) => {
+const JobRow: React.FC<Props> = ({
+  title,
+  companyName,
+  isoCode,
+  tag1,
+  tag2,
+  tag3
+}) => {
   return (
     <Container>
       <Left>
         {/* <CompanyLogoImage src={image} alt="image" /> */}
         <JobTitle>{title}</JobTitle>
-        <CompanyName>{isoCode}</CompanyName>
+        <CompanyName>{companyName}</CompanyName>
+        <TagGroup>
+          <Tag title={tag1} />
+          <Tag title={tag2} />
+          <Tag title={tag3} />
+        </TagGroup>
+        <ReactCountryFlag countryCode="US" />
       </Left>
       <Right></Right>
     </Container>
