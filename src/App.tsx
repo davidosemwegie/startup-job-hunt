@@ -1,7 +1,10 @@
 import React from "react"
-import ApolloClient from "apollo-boost"
-import { ApolloProvider, Query } from "react-apollo"
-import { useQuery } from "@apollo/react-hooks"
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  HttpLink
+} from "@apollo/client"
 import gql from "graphql-tag"
 import "./App.css"
 import styled from "styled-components"
@@ -11,9 +14,11 @@ import Button from "./components/Button"
 import JobList from "./components/JobList"
 
 const client = new ApolloClient({
-  uri: "https://api.graphql.jobs/"
+  cache: new InMemoryCache(),
+  link: new HttpLink({
+    uri: "https://api.graphql.jobs/"
+  })
 })
-
 const SearchForm = styled.form`
   display: grid;
   grid-template-columns: auto auto;
