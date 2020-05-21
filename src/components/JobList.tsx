@@ -26,7 +26,7 @@ interface Job {
   company: {
     id: string
     name: string
-    logoURL: string
+    logoUrl: string
   }
   cities: Array<{
     id: string
@@ -68,14 +68,6 @@ const JOBS_QUERY = gql`
   }
 `
 
-const simple = gql`
-  {
-    jobs {
-      title
-    }
-  }
-`
-
 const Container = styled.div`
   /* background-color: red;
   height: 400px; */
@@ -92,27 +84,17 @@ export default function JobList() {
         data &&
         data.jobs &&
         data.jobs.map(job => {
-          const cityname =
-            typeof job.cities[0] !== "undefined"
-              ? job.cities[0].name
-              : "Fuck this shit I am going to bed"
-
-          const isoCode =
-            typeof job.cities[0] !== "undefined"
-              ? job.cities[0].country.isoCode
-              : "Nothing to see here fam"
-
-          const tagName =
-            typeof job.tags[1] !== "undefined"
-              ? job.tags[1].name
-              : "Tears this still doesnt work"
-
           return (
             <JobRow
               title={typeof job.title !== "undefined" ? job.title : "Job Title"}
               companyName={
                 typeof job.company.name !== "undefined"
                   ? job.company.name
+                  : "Company Name"
+              }
+              logoUrl={
+                typeof job.company.logoUrl !== "undefined"
+                  ? job.company.logoUrl
                   : "Company Name"
               }
               isoCode={

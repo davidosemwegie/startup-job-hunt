@@ -32,6 +32,19 @@ interface Props {
   tag3: string
   isoCode: string
   companyName: string
+  logoUrl: string
+}
+
+interface LogoProps {
+  logoUrl: string
+}
+
+const CompanyLogo: React.FC<LogoProps> = ({ logoUrl }) => {
+  if (logoUrl) {
+    return <CompanyLogoImage src={logoUrl ? logoUrl : ""} />
+  } else {
+    return <div>This has an image</div>
+  }
 }
 
 const JobRow: React.FC<Props> = ({
@@ -40,12 +53,13 @@ const JobRow: React.FC<Props> = ({
   isoCode,
   tag1,
   tag2,
-  tag3
+  tag3,
+  logoUrl
 }) => {
   return (
     <Container>
       <Left>
-        {/* <CompanyLogoImage src={image} alt="image" /> */}
+        <CompanyLogo logoUrl={logoUrl} />
         <JobTitle>{title}</JobTitle>
         <CompanyName>{companyName}</CompanyName>
         <TagGroup>
@@ -53,7 +67,7 @@ const JobRow: React.FC<Props> = ({
           <Tag title={tag2} />
           <Tag title={tag3} />
         </TagGroup>
-        <ReactCountryFlag countryCode="US" />
+        <ReactCountryFlag countryCode={`${isoCode}`} />
       </Left>
       <Right></Right>
     </Container>
