@@ -8,20 +8,21 @@ console.log(data[0])
 
 const Container = styled.div`
   width: 80%;
-  margin: 0 auto;
+  margin: 20px auto;
   display: grid;
   grid-template-columns: repeat(3, auto);
 `
 const Left = styled.div`
   display: flexbox;
   flex-direction: row;
-  background-color: pink;
 `
 
 const Right = styled.div`
   display: flexbox;
-  flex-direction: row;
-  background-color: brown;
+  flex-direction: flex-end;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
 `
 
 const CompanyLogoImage = styled.img`
@@ -46,20 +47,33 @@ const CompanyNameLetter = styled.p`
   font-size: 30px;
   font-weight: 700;
 `
-const TitleGroup = styled.div``
+const TitleGroup = styled.div`
+  display: flexbox;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+`
+const TitleSubgroup = styled.div``
 
 const JobTitle = styled.p`
-  font-size: 30;
+  font-size: 25px;
   font-weight: 700;
+  margin: 0;
 `
 
-const CompanyName = styled.p``
+const CompanyName = styled.p`
+  margin: 0;
+`
 
 const CityName = styled.p``
 
 const TagGroup = styled.div`
   display: flexbox;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
 `
 
 interface Props {
@@ -107,8 +121,10 @@ const JobRow: React.FC<Props> = ({
       <Left>
         <CompanyLogo logoUrl={logoUrl} companyName={companyName} />
         <TitleGroup>
-          <JobTitle>{title}</JobTitle>
-          <CompanyName>{companyName}</CompanyName>
+          <TitleSubgroup>
+            <JobTitle>{title}</JobTitle>
+            <CompanyName>{companyName}</CompanyName>
+          </TitleSubgroup>
         </TitleGroup>
       </Left>
       <TagGroup>
