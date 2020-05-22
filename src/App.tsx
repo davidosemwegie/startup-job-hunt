@@ -3,7 +3,8 @@ import {
   ApolloProvider,
   ApolloClient,
   InMemoryCache,
-  HttpLink
+  HttpLink,
+  useQuery
 } from "@apollo/client"
 import gql from "graphql-tag"
 import "./App.css"
@@ -12,6 +13,7 @@ import Layout from "./components/Layout"
 import HeroSection from "./components/HeroSection"
 import Button from "./components/Button"
 import JobList from "./components/JobList"
+import SearchingList from "./components/JobList"
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -19,6 +21,7 @@ const client = new ApolloClient({
     uri: "https://api.graphql.jobs/"
   })
 })
+
 const SearchForm = styled.form`
   display: grid;
   grid-template-columns: auto auto;
@@ -42,21 +45,20 @@ const SearchInput = styled.input`
   padding-left: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 `
-
-function App() {
+const App: React.FC = () => {
   return (
     <ApolloProvider client={client}>
       <Layout>
         <HeroSection>
-          <SearchForm>
+          {/* <SearchForm>
             <SearchInput type="text" placeholder="Location" />
             <Button
               title="Search"
               onClick={() => console.log("The button was clicked")}
             />
-          </SearchForm>
+          </SearchForm> */}
         </HeroSection>
-        <JobList />
+        <SearchingList />
       </Layout>
     </ApolloProvider>
   )
