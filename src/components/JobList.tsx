@@ -96,12 +96,21 @@ const SearchInput = styled.input`
   padding-left: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
 `
+const SearchError = styled.h1`
+  align-self: center;
+  color: red;
+`
+
 interface Props {}
 
 const JobList: React.FC<Props> = () => {
   const { loading, data } = useQuery<JobsData>(JOBS_QUERY)
 
   jobData = data ? data : undefined
+
+  if (loading) {
+    return <h1>Loading...</h1>
+  }
 
   return (
     <Container>
@@ -190,7 +199,7 @@ class SearchingList extends React.Component<JobListProps, IState, JobsData> {
   }
 
   render() {
-    const { searchValue, searching } = this.state
+    const { searchValue, searching, data } = this.state
 
     if (!searching || searchValue == "") {
       return (
@@ -211,6 +220,25 @@ class SearchingList extends React.Component<JobListProps, IState, JobsData> {
           <JobList />
         </div>
       )
+    } else if (data.length == 0) {
+      return (
+        <div>
+          <SearchForm>
+            <SearchInput
+              type="text"
+              placeholder="Search..."
+              value={searchValue}
+              name="searchValue"
+              onChange={this.handleInputChage}
+            />
+            <Button
+              title="Search"
+              onClick={() => console.log("The button was clicked")}
+            />
+            <SearchError>No Matches</SearchError>
+          </SearchForm>
+        </div>
+      )
     } else {
       return (
         <div>
@@ -227,7 +255,7 @@ class SearchingList extends React.Component<JobListProps, IState, JobsData> {
               onClick={() => console.log("The button was clicked")}
             />
           </SearchForm>
-          {this.state.data.map(job => {
+          {data.map(job => {
             return (
               <JobRow
                 title={
