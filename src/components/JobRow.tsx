@@ -12,6 +12,7 @@ const Container = styled.div`
 
   @media (max-width: 640px) {
     grid-template-columns: repeat(1, auto);
+    width: 85%;
   }
 `
 const Left = styled.div`
@@ -86,16 +87,18 @@ const JobTitle = styled.p`
   margin: 0;
 
   @media (max-width: 640px) {
-    font-size: 14px;
-    max-width: 200px;
+    font-size: 18px;
+    max-width: 220px;
   }
 `
 
 const CompanyName = styled.p`
   margin: 0;
+  color: #d6d6d6;
+  font-weight: 700;
 
   @media (max-width: 640px) {
-    font-size: 10px;
+    font-size: 12px;
   }
 `
 
