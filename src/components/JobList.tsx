@@ -8,8 +8,9 @@ import Button from "./Button"
 
 //Interfaces
 import { City, Tag, Job } from "../interface"
+import { type } from "os"
 
-let jobData: JobsData
+let jobData: JobsData | undefined
 
 interface JobsData {
   jobs: Job[]
@@ -164,13 +165,14 @@ class SearchingList extends React.Component<JobListProps, IState, JobsData> {
     this.setState({ searching: true })
     console.log(value)
 
-    const res = []
+    const res: Job[] = []
 
-    jobData.jobs.forEach(job => {
-      if (job.title.toLowerCase().search(value.toLowerCase()) !== -1) {
-        res.push(job)
-      }
-    })
+    if (typeof jobData !== "undefined")
+      jobData.jobs.forEach(job => {
+        if (job.title.toLowerCase().search(value.toLowerCase()) !== -1) {
+          res.push(job)
+        }
+      })
 
     this.setState({
       data: res
