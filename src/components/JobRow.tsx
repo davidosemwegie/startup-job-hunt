@@ -3,6 +3,7 @@ import styled from "styled-components"
 import data from "../data"
 import Tag from "./Tag"
 import ReactCountryFlag from "react-country-flag"
+import { Link } from "react-router-dom"
 
 const Container = styled.div`
   width: 80%;
@@ -124,6 +125,8 @@ interface Props {
   companyName: string
   logoUrl: string
   city: string
+  slug: string
+  companySlug: string
 }
 
 interface LogoProps {
@@ -153,7 +156,9 @@ const JobRow: React.FC<Props> = ({
   tag2,
   tag3,
   logoUrl,
-  city
+  city,
+  slug,
+  companySlug
 }) => {
   return (
     <Container>
@@ -161,7 +166,9 @@ const JobRow: React.FC<Props> = ({
         <CompanyLogo logoUrl={logoUrl} companyName={companyName} />
         <TitleGroup>
           <TitleSubgroup>
-            <JobTitle>{title}</JobTitle>
+            <JobTitle>
+              <Link to={`/job/${companySlug}/${slug}`}>{title}</Link>
+            </JobTitle>
             <CompanyName>{companyName}</CompanyName>
           </TitleSubgroup>
         </TitleGroup>

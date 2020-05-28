@@ -6,7 +6,6 @@ import {
   HttpLink,
   useQuery
 } from "@apollo/client"
-import gql from "graphql-tag"
 import "./App.css"
 import styled from "styled-components"
 import Layout from "./components/Layout"
@@ -14,6 +13,8 @@ import HeroSection from "./components/HeroSection"
 import Button from "./components/Button"
 import JobList from "./components/JobList"
 import SearchingList from "./components/JobList"
+import JobDetails from "./components/JobDetails"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -21,19 +22,6 @@ const client = new ApolloClient({
     uri: "https://api.graphql.jobs/"
   })
 })
-
-const SearchForm = styled.form`
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 20px;
-  justify-content: center;
-  padding: 20px;
-
-  @media (max-width: 640px) {
-    grid-template-columns: auto;
-    /* grid-template-columns: repeat(1, auto); */
-  }
-`
 
 const SearchInput = styled.input`
   border: none;
@@ -47,20 +35,19 @@ const SearchInput = styled.input`
 `
 const App: React.FC = () => {
   return (
-    <ApolloProvider client={client}>
-      <Layout>
-        <HeroSection>
-          {/* <SearchForm>
-            <SearchInput type="text" placeholder="Location" />
-            <Button
-              title="Search"
-              onClick={() => console.log("The button was clicked")}
-            />
-          </SearchForm> */}
-        </HeroSection>
-        <SearchingList />
-      </Layout>
-    </ApolloProvider>
+    <Router>
+      <ApolloProvider client={client}>
+        <Switch>
+          <Route exact path="/">
+            <Layout>
+              <HeroSection />
+              <SearchingList />
+            </Layout>
+          </Route>
+          <Route exact path="/job/:companySlug/:slug" component={JobDetails} />
+        </Switch>
+      </ApolloProvider>
+    </Router>
   )
 }
 

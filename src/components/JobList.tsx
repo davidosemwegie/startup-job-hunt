@@ -1,43 +1,15 @@
 import React from "react"
+import { useState, useEffect } from "react"
 import { useQuery } from "@apollo/client"
 import gql from "graphql-tag"
 import styled from "styled-components"
 import JobRow from "./JobRow"
 import Button from "./Button"
 
+//Interfaces
+import { City, Tag, Job } from "../interface"
+
 let jobData: JobsData
-
-interface City {
-  id: string
-  name: string
-  country: {
-    isoCode: string
-  }
-}
-
-interface Tag {
-  id: string
-  name: string
-  slug: string
-}
-
-interface Job {
-  id: number
-  title: string
-  company: {
-    id: string
-    name: string
-    logoUrl: string
-  }
-  cities: Array<{
-    id: string
-    name: string
-    country: {
-      isoCode: string
-    }
-  }>
-  tags: Tag[]
-}
 
 interface JobsData {
   jobs: Job[]
@@ -48,10 +20,12 @@ const JOBS_QUERY = gql`
     jobs {
       id
       title
+      slug
       company {
         id
         name
         logoUrl
+        slug
       }
       cities {
         id
@@ -119,6 +93,12 @@ const JobList: React.FC<Props> = () => {
         data.jobs.map(job => {
           return (
             <JobRow
+              slug={typeof job.slug != "undefined" ? job.slug : "slug"}
+              companySlug={
+                typeof job.company.slug !== "undefined"
+                  ? job.company.slug
+                  : "slug"
+              }
               title={typeof job.title !== "undefined" ? job.title : "Job Title"}
               companyName={
                 typeof job.company.name !== "undefined"
@@ -212,10 +192,10 @@ class SearchingList extends React.Component<JobListProps, IState, JobsData> {
               name="searchValue"
               onChange={this.handleInputChage}
             />
-            <Button
+            {/* <Button
               title="Search"
               onClick={() => console.log("The button was clicked")}
-            />
+            /> */}
           </SearchForm>
           <JobList />
         </div>
@@ -231,10 +211,10 @@ class SearchingList extends React.Component<JobListProps, IState, JobsData> {
               name="searchValue"
               onChange={this.handleInputChage}
             />
-            <Button
+            {/* <Button
               title="Search"
               onClick={() => console.log("The button was clicked")}
-            />
+            /> */}
             <SearchError>No Matches</SearchError>
           </SearchForm>
         </div>
@@ -258,6 +238,12 @@ class SearchingList extends React.Component<JobListProps, IState, JobsData> {
           {data.map(job => {
             return (
               <JobRow
+                companySlug={
+                  typeof job.company.slug !== "undefined"
+                    ? job.company.slug
+                    : "slug"
+                }
+                slug={typeof job.slug != "undefined" ? job.slug : "slug"}
                 title={
                   typeof job.title !== "undefined" ? job.title : "Job Title"
                 }

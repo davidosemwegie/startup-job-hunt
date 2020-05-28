@@ -3,7 +3,7 @@ import styled from "styled-components"
 import Button from "./Button"
 
 interface Props {
-  children: any
+  children?: any
 }
 
 const Container = styled.div`
@@ -30,14 +30,14 @@ const HeroMessage = styled.p`
   }
 `
 
-const HeroSection: React.FC<Props> = ({ children }) => {
+const HeroSection: React.FC<Props> = () => {
   return (
     <Container>
       <HeroMessage>
         Find your dream job as a <code>{`{developer}`}</code> in a modern start
         up.
       </HeroMessage>
-      {children}
+      {/* {children} */}
     </Container>
   )
 }
